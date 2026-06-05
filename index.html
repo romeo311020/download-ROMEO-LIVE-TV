@@ -268,7 +268,7 @@
         /* أزرار اختيار نوع الرفع الماستر */
         .media-selector-grid {
             display: grid;
-            grid-template-columns: repeat(2, 100px); /* مربعات صغيرة وعملية */
+            grid-template-columns: repeat(2, 100px);
             gap: 15px;
             margin-bottom: 35px;
             justify-content: center;
@@ -593,12 +593,12 @@
     <section id="login-screen">
         <div class="login-box glass-card">
             <div class="brand-logo">
-                <i class="fa-solid kept fa-crown"></i>
+                <i class="fa-solid fa-crown"></i>
             </div>
             <h1>مرحبًا بك عزيزي المشرف</h1>
             <p>الرجاء إدخال بيانات الاعتماد للوصول للوحة التحكم</p>
 
-            <form id="login-form" onsubmit="handleLogin(event)">
+            <form id="login-form" onsubmit="handleLogin(event); return false;">
                 <div class="input-group">
                     <label>اسم المشروع</label>
                     <input type="text" id="project-input" class="input-control" placeholder="مثال: ROMEO LIVE TV" required autocomplete="off">
@@ -648,7 +648,7 @@
                     <h2 id="section-main-title"><i class="fa-solid fa-video" style="color: var(--gold);"></i> رفع فيديو MP4 جديد</h2>
                 </div>
 
-                <form id="upload-form" onsubmit="handleSimulatedUpload(event)">
+                <form id="upload-form" onsubmit="handleSimulatedUpload(event); return false;">
                     <div class="drag-drop-zone" id="drop-zone" onclick="document.getElementById('file-input').click()">
                         <i class="fa-solid fa-cloud-arrow-up upload-icon-cloud" id="cloud-icon"></i>
                         <p id="drag-text">اسحب الملف وأفلته هنا أو اضغط للتصفح</p>
@@ -722,14 +722,10 @@
     <div id="toast-container"></div>
 
     <script>
-        // التوكن الثابت في الكود للتأقق والعبور
         const VALID_TOKEN = "ROMANY-2026";
-        let currentMediaType = 'video'; // النوع الافتراضي
-
-        // كائن لحفظ بيانات الملف المختار مؤقتاً
+        let currentMediaType = 'video';
         let selectedFileRaw = null;
 
-        // --- 1. نظام إشعارات الـ Toast الفاخر ---
         function showToast(message, type = 'info') {
             const container = document.getElementById('toast-container');
             const toast = document.createElement('div');
@@ -742,7 +738,6 @@
             toast.innerHTML = `<i class="fa-solid ${icon}"></i> <span>${message}</span>`;
             container.appendChild(toast);
 
-            // تدمير التنبيه بعد 4 ثواني بسلاسة
             setTimeout(() => {
                 toast.style.transform = window.innerWidth <= 768 ? 'translateY(150%)' : 'translateX(-120%)';
                 toast.style.transition = 'all 0.4s ease';
@@ -750,9 +745,12 @@
             }, 3500);
         }
 
-        // --- 2. إدارة عملية تسجيل الدخول وفحص التوكن ---
+        // تم إضافة التأكيد الصارم على منع تحديث الصفحة داخل الدالة
         function handleLogin(event) {
-            event.preventDefault();
+            if (event) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
             
             const projectName = document.getElementById('project-input').value.trim();
             const userToken = document.getElementById('token-input').value.trim();
@@ -760,10 +758,8 @@
             if (userToken === VALID_TOKEN) {
                 showToast("تم التحقق من الرمز بنجاح. مرحباً بك!", "success");
                 
-                // تحديث اسم المشروع في الهيدر
                 document.getElementById('display-project-name').innerText = projectName;
 
-                // انيميشن انتقال الشاشات SPA style
                 const loginScreen = document.getElementById('login-screen');
                 const dashboardScreen = document.getElementById('dashboard-screen');
 
@@ -781,22 +777,19 @@
             } else {
                 showToast("رمز الـ TOKEN الذي أدخلته غير صحيح!", "error");
             }
+            return false;
         }
 
-        // --- 3. التبديل بين نماذج الميديا (فيديو / صوت) SPA View ---
         function switchMediaType(type) {
             if (type === currentMediaType) return;
             currentMediaType = type;
 
-            // تحديث تصميم الأزرار النشطة
             document.getElementById('btn-view-video').classList.toggle('active', type === 'video');
             document.getElementById('btn-view-audio').classList.toggle('active', type === 'audio');
 
-            // تعديل النصوص والأيقونات ديناميكياً بناءً على النوع
             const mainTitle = document.getElementById('section-main-title');
             const formatHint = document.getElementById('format-hint');
             
-            // إعادة تهيئة واجهة الرفع عند التبديل
             resetUploadForm();
 
             if (type === 'video') {
@@ -808,7 +801,6 @@
             }
         }
 
-        // --- 4. معالجة عمليات اختيار الملفات ---
         function handleFileSelect(input) {
             if (input.files && input.files[0]) {
                 processFile(input.files[0]);
@@ -816,7 +808,6 @@
         }
 
         function processFile(file) {
-            // التحقق السريع من الامتداد لتجربة مستخدم مثالية
             const fileExtension = file.name.split('.').pop().toLowerCase();
             
             if (currentMediaType === 'video' && fileExtension !== 'mp4') {
@@ -830,7 +821,6 @@
 
             selectedFileRaw = file;
             
-            // تحديث البادج البصري داخل الصندوق
             document.getElementById('drag-text').style.display = 'none';
             document.getElementById('format-hint').style.display = 'none';
             document.getElementById('cloud-icon').style.color = 'var(--gold)';
@@ -841,7 +831,6 @@
             badge.style.display = 'flex';
         }
 
-        // تهيئة الـ Drag & Drop داخل الصندوق الشفاف
         const dropZone = document.getElementById('drop-zone');
         
         ['dragenter', 'dragover'].forEach(eventName => {
@@ -866,9 +855,8 @@
             }
         });
 
-        // --- 5. محاكاة الرفع وتوليد روابط الـ Embed ---
         function handleSimulatedUpload(event) {
-            event.preventDefault();
+            if (event) event.preventDefault();
 
             if (!selectedFileRaw) {
                 showToast("برجاء اختيار أو سحب ملف أولاً للبدء!", "error");
@@ -879,21 +867,18 @@
             const loadingContainer = document.getElementById('upload-loading');
             const resultCard = document.getElementById('upload-result');
 
-            // إخفاء كرت النتيجة القديم والنموذج وتشغيل اللودينج
             resultCard.style.display = 'none';
             uploadForm.style.display = 'none';
             loadingContainer.style.display = 'block';
 
-            // محاكاة وقت المعالجة البرمجية (2.5 ثانية للسرعة السلسة)
             setTimeout(() => {
                 loadingContainer.style.display = 'none';
                 uploadForm.style.display = 'block';
 
-                // تجهيز البيانات المستخرجة
                 const customNameInput = document.getElementById('custom-file-name').value.trim();
                 const finalName = customNameInput || selectedFileRaw.name.replace(/\.[^/.]+$/, "");
                 const fileSizeFormatted = (selectedFileRaw.size / (1024 * 1024)).toFixed(2) + ' MB';
-                const simulatedId = Math.floor(100000 + Math.random() * 900000); // معرف عشوائي فريد للملف
+                const simulatedId = Math.floor(100000 + Math.random() * 900000);
                 
                 let simulatedUrl = `https://premium-cdn.net/stream/${currentMediaType}/${simulatedId}`;
                 let embedCode = '';
@@ -904,24 +889,21 @@
                     embedCode = `<iframe src="https://premium-cdn.net/embed/audio/${simulatedId}" width="100%" height="90" frameborder="0"></iframe>`;
                 }
 
-                // حقن البيانات في الواجهة المستهدفة
                 document.getElementById('res-name').innerText = finalName;
                 document.getElementById('res-type').innerText = currentMediaType === 'video' ? 'فيديو MP4 عالية الجودة' : 'ملف صوتي MP3 نقي';
                 document.getElementById('res-size').innerText = fileSizeFormatted;
                 document.getElementById('res-url').innerText = simulatedUrl;
                 document.getElementById('res-embed').innerText = embedCode;
 
-                // إظهار كرت النتيجة النهائي بنعومة واجهة المستخدم
                 resultCard.style.display = 'block';
                 showToast("اكتمل الرفع وتوليد الشيفرات بنجاح!", "success");
                 
-                // مسح اختيار الملف حماية للذاكرة
                 resetFileSelectionOnly();
 
             }, 2500);
+            return false;
         }
 
-        // أدوات مساعدة للواجهة لإعادة التهيئة
         function resetUploadForm() {
             document.getElementById('upload-form').reset();
             document.getElementById('upload-result').style.display = 'none';
@@ -937,7 +919,6 @@
             document.getElementById('cloud-icon').style.color = 'var(--text-muted)';
         }
 
-        // --- 6. وظيفة النسخ الذكي بضغطة زر ---
         function copyText(elementId) {
             const textContent = document.getElementById(elementId).innerText;
             navigator.clipboard.writeText(textContent).then(() => {
