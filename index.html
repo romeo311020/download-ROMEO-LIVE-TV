@@ -196,24 +196,42 @@
         .form-group h3 { font-size: 15px; color: var(--primary); margin-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 10px; font-weight: 700; }
         .file-hint { color: var(--text-dim); font-size: 11px; margin-top: 7px; }
         .image-preview { display: none; width: 100%; max-height: 220px; object-fit: contain; border-radius: 12px; margin-top: 15px; border: 1px solid rgba(255,255,255,0.08); background: #020304; }
-        .detail-layout { max-width: 1050px; margin: 30px auto; }
-        .detail-shell { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(280px, .65fr); gap: 22px; }
-        .detail-preview { min-height: 380px; display: flex; align-items: center; justify-content: center; padding: 25px; background: rgba(4,5,8,.72); border: 1px solid rgba(255,255,255,.07); border-radius: 20px; overflow: hidden; }
+        .detail-view { background: #f3f5f8; color: #17202d; max-width: none; min-height: 100vh; padding: 0 42px 50px; }
+        .detail-view header { max-width: 1440px; margin: 0 auto; background: #ffffff; color: #17202d; border-bottom: 1px solid #e4e8ee; border-radius: 0 0 14px 14px; box-shadow: 0 8px 24px rgba(20,35,55,.06); }
+        .detail-view .logo { color: #17202d; }
+        .detail-layout { max-width: 1440px; margin: 0 auto; padding-top: 34px; }
+        .detail-breadcrumb { color: #738096; font-size: 12px; margin-bottom: 14px; }
+        .detail-shell { display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(380px, .75fr); gap: 28px; align-items: start; }
+        .detail-preview { min-height: 510px; display: flex; align-items: center; justify-content: center; padding: 34px; background: #172536; border: 1px solid #26384d; border-radius: 16px; overflow: hidden; box-shadow: 0 18px 40px rgba(21,36,54,.14); }
         .detail-preview img, .detail-preview video { max-width: 100%; max-height: 520px; border-radius: 12px; }
         .detail-preview audio { width: 100%; }
         .detail-icon { font-size: 70px; color: var(--primary); }
-        .detail-info { background: var(--card); border: 1px solid rgba(255,255,255,.06); border-radius: 20px; padding: 25px; }
-        .detail-info h1 { font-size: 21px; line-height: 1.45; word-break: break-word; margin-bottom: 20px; }
-        .detail-meta { display: grid; gap: 12px; padding: 16px 0; border-top: 1px solid rgba(255,255,255,.06); border-bottom: 1px solid rgba(255,255,255,.06); margin-bottom: 18px; }
+        .detail-info { background: #ffffff; border: 1px solid #e1e6ed; border-radius: 16px; padding: 28px; box-shadow: 0 12px 30px rgba(20,35,55,.07); }
+        .detail-info .eyebrow { color: #bd8b00; }
+        .detail-info h1 { color: #17202d; font-size: 24px; line-height: 1.45; word-break: break-word; margin-bottom: 20px; }
+        .detail-meta { display: grid; gap: 12px; padding: 16px 0; border-top: 1px solid #e8ecf1; border-bottom: 1px solid #e8ecf1; margin-bottom: 18px; }
         .detail-meta div { display: flex; justify-content: space-between; gap: 12px; font-size: 12px; }
-        .detail-meta span:first-child { color: var(--text-dim); }
-        .detail-meta span:last-child { color: #e1e4eb; text-align: left; word-break: break-all; }
+        .detail-meta span:first-child { color: #738096; }
+        .detail-meta span:last-child { color: #29384a; text-align: left; word-break: break-all; }
         .detail-actions { display: grid; gap: 10px; }
         .detail-actions button { display: flex; align-items: center; justify-content: center; gap: 8px; }
-        .btn-secondary { background: rgba(255,255,255,.06); color: var(--text); border: 1px solid rgba(255,255,255,.08); }
-        .btn-secondary:hover { background: rgba(229,184,11,.12); color: var(--primary); }
-        .btn-danger { background: rgba(255,77,77,.1); color: var(--danger); border: 1px solid rgba(255,77,77,.2); }
+        .detail-view .btn-primary { background: #bd8b00; color: #fff; }
+        .detail-view .btn-primary:hover { background: #a77900; }
+        .btn-secondary { background: #f2f5f8; color: #29384a; border: 1px solid #dfe5ec; }
+        .btn-secondary:hover { background: #e8edf2; color: #17202d; }
+        .btn-danger { background: #fff3f2; color: var(--danger); border: 1px solid #ffd9d5; }
         .btn-danger:hover { background: var(--danger); color: #fff; }
+        .share-panel { margin-top: 28px; background: #ffffff; border: 1px solid #e1e6ed; border-radius: 16px; padding: 28px; box-shadow: 0 12px 30px rgba(20,35,55,.07); }
+        .share-heading { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 20px; }
+        .share-heading h2 { color: #17202d; font-size: 18px; }
+        .share-heading p { color: #738096; font-size: 12px; }
+        .share-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+        .share-field label { color: #536277; font-size: 12px; margin-bottom: 7px; }
+        .share-field .copy-wrapper { direction: ltr; }
+        .share-field input { height: 44px; color: #26384d; background: #f7f9fb; border: 1px solid #dfe5ec; border-radius: 8px 0 0 8px; }
+        .share-field .copy-btn { height: 44px; border-radius: 0 8px 8px 0; background: #172536; color: #fff; width: 78px; }
+        .share-field .copy-btn:hover { background: #bd8b00; }
+        .share-note { color: #738096; font-size: 11px; margin-top: 16px; }
         label { display: block; font-size: 13px; color: var(--text-dim); margin-bottom: 8px; text-align: right; font-weight: 600; }
 
         .loader { 
@@ -223,6 +241,77 @@
         .spinner { width: 45px; height: 45px; border: 3px solid var(--primary); border-top-color: transparent; border-radius: 50%; animation: spin 0.8s linear infinite; }
         
         @keyframes spin { to { transform: rotate(360deg); } }
+
+        :root {
+            --bg: #f3f5f8;
+            --card: #ffffff;
+            --primary: #bd8b00;
+            --primary-glow: rgba(189, 139, 0, 0.16);
+            --text: #17202d;
+            --text-dim: #738096;
+            --glass: #f7f9fb;
+            --glass-border: #e1e6ed;
+        }
+
+        body {
+            background: #f3f5f8;
+            background-image: linear-gradient(135deg, #f8fafc 0%, #eef2f6 100%);
+            color: #17202d;
+        }
+
+        .login-container, .items-list-section, .upload-card, .form-group, .progress-container, .result-panel {
+            background: #ffffff;
+            border-color: #e1e6ed;
+            box-shadow: 0 12px 30px rgba(20,35,55,.07);
+        }
+        .login-container { box-shadow: 0 18px 42px rgba(20,35,55,.1); }
+        .login-container i { color: #bd8b00; }
+        .login-container h2, .dashboard-header h3, .upload-card h4, .section-title-bar h3 { color: #17202d; }
+        .input-wrapper label, .form-group h3 { color: #bd8b00; }
+
+        input, select, textarea {
+            background: #f7f9fb;
+            color: #26384d;
+            border-color: #dfe5ec;
+        }
+        input:focus, select:focus, textarea:focus { border-color: #bd8b00; box-shadow: 0 0 12px rgba(189,139,0,.15); }
+        .btn-primary { background: #bd8b00; color: #fff; }
+        .btn-primary:hover { box-shadow: 0 8px 25px rgba(189,139,0,.25); }
+
+        header {
+            background: #ffffff;
+            color: #17202d;
+            border-bottom-color: #e4e8ee;
+            box-shadow: 0 8px 24px rgba(20,35,55,.06);
+        }
+        .logo { color: #17202d; }
+        .notification-icon { color: #738096; }
+        .notification-dropdown { background: #ffffff; border-color: #e1e6ed; box-shadow: 0 15px 35px rgba(20,35,55,.12); }
+        .notification-header, .notification-item { border-color: #e8ecf1; }
+        .notification-header { background: #f7f9fb; color: #17202d; }
+        .notification-item { color: #29384a; }
+        .stats-card { background: #ffffff; border-color: #e1e6ed; box-shadow: 0 12px 30px rgba(20,35,55,.07); }
+        .stats-info h3 { color: #17202d; }
+        .search-bar { background: #ffffff; color: #26384d; border-color: #dfe5ec; box-shadow: 0 4px 15px rgba(20,35,55,.05); }
+        .search-bar:focus { background: #ffffff; border-color: rgba(189,139,0,.5); box-shadow: 0 0 20px rgba(189,139,0,.12); }
+        .upload-card:hover { border-color: rgba(189,139,0,.4); box-shadow: 0 15px 35px rgba(20,35,55,.1); }
+        .card-btn { background: #f7f9fb; color: #29384a; border-color: #dfe5ec; }
+        .card-btn:hover { background: #bd8b00; color: #fff; border-color: #bd8b00; }
+        .items-list-section { color: #17202d; }
+        .section-title-bar, .media-table th, .media-table td { border-color: #e8ecf1; }
+        .media-table th { color: #738096; }
+        .media-table td { color: #29384a; }
+        .media-table tr:hover td { background: #f7f9fb; }
+        .table-btn { background: #f2f5f8; border-color: #dfe5ec; }
+        .table-btn.copy { color: #bd8b00; }
+        .table-btn.copy:hover { background: #bd8b00; color: #fff; }
+        .side-menu { background: #ffffff; border-color: #e1e6ed; box-shadow: 0 12px 30px rgba(20,35,55,.07); }
+        .nav-item:hover, .nav-item.active { background: #fff8e3; color: #bd8b00; }
+        .dashboard-header { color: #17202d; }
+        .form-group h3 { border-color: #e8ecf1; }
+        .progress-container { background: #ffffff; }
+        .progress-bar-bg { background: #e8ecf1; }
+        .copy-wrapper input { background: #f7f9fb; color: #26384d; }
         
         @media (max-width: 768px) {
             .dashboard-layout { display: block; padding: 15px; }
@@ -234,8 +323,10 @@
             header { padding: 12px 20px; }
             .view { padding: 0; }
             .notification-dropdown { width: 290px; right: -50px; }
+            .detail-view { padding: 0 15px 35px; }
             .detail-shell { grid-template-columns: 1fr; }
             .detail-preview { min-height: 260px; }
+            .share-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -460,12 +551,13 @@
         </div>
     </div>
 
-    <div id="mediaDetailView" class="view">
+    <div id="mediaDetailView" class="view detail-view">
         <header>
             <div onclick="showView('dashboardView')" style="cursor:pointer; font-size: 13.5px;"><i class="fas fa-arrow-right"></i> العودة إلى المكتبة</div>
             <div class="logo">تفاصيل <span>الملف</span></div>
         </header>
         <div class="detail-layout">
+            <div class="detail-breadcrumb"><i class="fas fa-folder-open"></i> مكتبة الميديا / صفحة الملف</div>
             <div class="detail-shell">
                 <section class="detail-preview" id="detailPreview"></section>
                 <section class="detail-info">
@@ -483,6 +575,33 @@
                     </div>
                 </section>
             </div>
+            <section class="share-panel">
+                <div class="share-heading">
+                    <div>
+                        <h2><i class="fas fa-share-alt" style="color:#bd8b00"></i> روابط ومشاركة الملف</h2>
+                        <p>انسخ الصيغة المناسبة لموقعك أو تطبيقك.</p>
+                    </div>
+                </div>
+                <div class="share-grid">
+                    <div class="share-field">
+                        <label>الرابط المباشر CDN</label>
+                        <div class="copy-wrapper"><input id="detailDirectLink" readonly><button class="copy-btn" onclick="copyText('detailDirectLink')">نسخ</button></div>
+                    </div>
+                    <div class="share-field">
+                        <label>رابط GitHub RAW</label>
+                        <div class="copy-wrapper"><input id="detailRawLink" readonly><button class="copy-btn" onclick="copyText('detailRawLink')">نسخ</button></div>
+                    </div>
+                    <div class="share-field">
+                        <label>رابط التضمين Embed</label>
+                        <div class="copy-wrapper"><input id="detailEmbedLink" readonly><button class="copy-btn" onclick="copyText('detailEmbedLink')">نسخ</button></div>
+                    </div>
+                    <div class="share-field">
+                        <label>كود HTML بدون iframe</label>
+                        <div class="copy-wrapper"><input id="detailHtmlCode" readonly><button class="copy-btn" onclick="copyText('detailHtmlCode')">نسخ</button></div>
+                    </div>
+                </div>
+                <p class="share-note"><i class="fas fa-circle-info"></i> استخدم كود HTML المباشر عندما تريد عرض الملف داخل صفحتك بدون مشغل خارجي.</p>
+            </section>
         </div>
     </div>
 
@@ -708,12 +827,23 @@
             if(!item) return;
             location.hash = `media/${encodedPath}`;
             const directUrl = `https://cdn.jsdelivr.net/gh/${CONFIG.repo}@main/${item.path}`;
+            const rawUrl = `https://raw.githubusercontent.com/${CONFIG.repo}/main/${item.path}`;
+            const embedUrl = `https://${CONFIG.repo.split('/')[0]}.github.io/${CONFIG.repo.split('/')[1]}/player.html?type=${item.type}&src=${encodeURIComponent(item.path)}`;
             const preview = document.getElementById('detailPreview');
             const typeLabel = item.type === 'video' ? 'فيديو MP4' : item.type === 'audio' ? 'صوت MP3' : 'صورة';
+            const htmlCode = item.type === 'image'
+                ? `<img src="${directUrl}" alt="${item.name}" style="max-width:100%;height:auto;">`
+                : item.type === 'video'
+                    ? `<video controls style="max-width:100%;"><source src="${directUrl}" type="video/mp4"></video>`
+                    : `<audio controls><source src="${directUrl}" type="audio/mpeg"></audio>`;
 
             document.getElementById('detailName').innerText = item.name;
             document.getElementById('detailType').innerText = typeLabel;
             document.getElementById('detailPath').innerText = item.path;
+            document.getElementById('detailDirectLink').value = directUrl;
+            document.getElementById('detailRawLink').value = rawUrl;
+            document.getElementById('detailEmbedLink').value = item.type === 'image' ? directUrl : embedUrl;
+            document.getElementById('detailHtmlCode').value = htmlCode;
             if(item.type === 'image') preview.innerHTML = `<img src="${directUrl}" alt="${item.name}">`;
             else if(item.type === 'video') preview.innerHTML = `<video src="${directUrl}" controls playsinline></video>`;
             else if(item.type === 'audio') preview.innerHTML = `<div style="width:100%;text-align:center"><i class="fas fa-music detail-icon"></i><audio src="${directUrl}" controls></audio></div>`;
